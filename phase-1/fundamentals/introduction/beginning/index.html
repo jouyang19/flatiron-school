@@ -9,3 +9,27 @@
   2. Write a <head> and <body>.
   3. Link this file to `index.js`, so that the browser loads that file **after** loading the <body>.
 -->
+
+<!-- This preamble tells the browser that our document type is HTML -->
+<!DOCTYPE html>
+
+<!-- The head tag contains our metadata, information that does not appear on our page. -->
+<head>
+  <meta lang="en"/>
+  <title>My Website</title>
+  <script defer src="./index.js"></script>
+</head>
+
+<!-- The body tag's content has the visual content of our page -->
+<body>
+  <!-- h1, img, div, p, span -->
+  <h1>An introduction to HTML</h1>
+  <h2>by Sakib Rasul</h2>
+  <div>
+    <h3>Some less important heading</h3>
+  </div>
+  <p>Some paragraph text...</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/240px-HTML5_logo_and_wordmark.svg.png" alt="HTML5 Logo"/>
+  <br>
+  <a href="https://flatironschool.com">Flatiron School</a>
+</body>
