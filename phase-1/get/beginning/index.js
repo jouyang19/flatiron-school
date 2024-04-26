@@ -11,6 +11,13 @@ Objectives
 */
 
 // A synchronous request to https://dog-api.kinduff.com/api/facts?number=1.
+fetch("https://anapioficeandfire.com/api/books")
+  // Convert the JSON response into JS.
+  .then((response) => response.json())
+  //
+  .then((data) => {
+    console.log(data);
+  });
 
 // A synchronous request to https://anapioficeandfire.com/api/books.
 
