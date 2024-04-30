@@ -93,7 +93,7 @@ fetch("http://localhost:3000/cats")
     });
   });
 
-// select ul of cats or dogs and create li to append to ul.
+// function to select ul of cats / dogs and create li to append to ul.
 function addNewAnimal(randomObj, animalType) {
   const ul = document.querySelector(`#${animalType}`);
   const li = document.createElement("li");
@@ -107,10 +107,7 @@ function addNewAnimal(randomObj, animalType) {
   select.append(option);
 }
 
-// function removeFromList(randomObj, animalType) {
-//   const ul = document.querySelector(`#${animalType}`);
-// }
-
+// Function to add all the pets onto the select form of update pet section
 function updateSelection(randomObj, animalType) {
   const select = document.querySelector("#update");
   const option = document.createElement("option");
@@ -121,37 +118,6 @@ function updateSelection(randomObj, animalType) {
   // console.log(option);
   select.append(option);
 }
-
-// // Listen to the add cat form.
-// document.querySelector("#cat-form").addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   // targets in event the name="name" of the dog-form name and age value.
-//   const catName = event.target.name.value;
-//   const catAge = event.target.age.value;
-//   // to double check in console logging the values of the constants.
-//   console.log(catName + " " + catAge);
-//   fetch("http://localhost:3000/cats", {
-//     method: "POST",
-//     // Content-type asks for the format type the client wants or accepts.
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//     },
-//     // the body and JSON.stringify prepares the newCat and formats into JSON.
-//     body: JSON.stringify({
-//       name: catName,
-//       age: catAge,
-//       isACat: true,
-//       favoriteFoods: [],
-//     }),
-//   })
-//     // This part of the code is dedicated to appending the newCat to HTML.
-//     .then((response) => response.json())
-//     .then((newCat) => {
-//       console.log(newCat);
-//       addNewAnimal(newCat, "cats");
-//     });
-// });
 
 // 2.5 Replace forms with an "Add a Pet" form for selecting whether to add a dog or cat)
 /** Method:
@@ -186,7 +152,11 @@ document.querySelector("#remove-form").addEventListener("submit", (event) => {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-  });
+  })
+    .then((response) => response.json)
+    .then((pet) => {
+      addNewAnimal(pet, petType);
+    });
 });
 
 /**
@@ -221,6 +191,9 @@ document.querySelector("#update-form").addEventListener("submit", (event) => {
   //     " " +
   //     catFavoriteFoods
   // );
+  if (petType === "dogs") {
+  } else if (petType === "cats") {
+  }
   // fetch(`http://localhost:3000/${petType}/${petId}`, {
   //   method: "PATCH",
   //   headers: {
@@ -248,7 +221,6 @@ document.querySelector("#update-form").addEventListener("submit", (event) => {
       name: petName,
       age: petAge,
       isWellBehaved: isWellBehaved,
-      isACat: true,
       favoriteFoods: catFavoriteFoods,
     }),
   })
