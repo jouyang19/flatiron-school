@@ -88,18 +88,49 @@ console.log(
 console.log(prices.filter((price) => price < 20));
 // -> array.map() returns an array where each element has been transformed in some specified way.
 console.log(prices.map((price) => price * 2));
-console.log(prices);
+console.log("prices.map", prices);
 
 // ~ Challenges
 // 1. Write a function that takes an array of sentences and returns only those that are questions.
-// 2. Write a function that takes an array of lowercased sentences and returns them capitalized.
-// capitalizeSentences(phrases); // ["Hello, there!", "How are you?", "It's me!"];
 // console.log(phrase); // ["Hello, there!", "How are you?", "It's me!"]
 const phrases = ["hello, there!", "how are you?", "It's me!"]; // example array for #1 and #2
+
 const questionPhrases = phrases.filter((phrase) => {
   return phrase.slice(-1) === "?";
 });
-console.log(questionPhrases);
+console.log("questionPhrases", questionPhrases);
+// other solutions
+
+function filterQuestions(sentences) {
+  return sentences.filter((sentence) => sentence.slice(-1) === "?");
+}
+console.log("filterQuestions", filterQuestions(phrases));
+
+function filterQuestionsTwo(sentences) {
+  return sentences.filter((sentence) => sentence.endsWith("?"));
+}
+console.log("filterQuestionsTwo", filterQuestionsTwo(phrases));
+
+console.log(phrases[1].slice(-1) === "?");
+
+// 2. Write a function that takes an array of lowercased sentences and returns them capitalized.
+// capitalizeSentences(phrases); // ["Hello, there!", "How are you?", "It's me!"];
 
 const capPhrases = phrases.map((phrase) => phrase.toUpperCase());
-console.log(capPhrases);
+console.log("capPhrases", capPhrases);
+
+function upperCaseSentences(sentences) {
+  return sentences.map((sentence) => sentence.toUpperCase());
+}
+console.log("upperCaseSentences", upperCaseSentences(phrases));
+
+// Capitalize only the first letter
+
+function upperCaseFirstLetter(sentences) {
+  return sentences.map(
+    (sentence) => sentence[0].charAt().toUpperCase() + sentence.slice(1)
+    // "sentence[0].charAt().toUpperCase()" Capitalizes the first letter
+    // "+ sentence.slice(1)" Adds the rest of the sentence
+  );
+}
+console.log("upperCaseFirst", upperCaseFirstLetter(phrases));
