@@ -44,27 +44,15 @@
       "age": "1",
       "isACat": true,
       "favoriteFoods": []
+    },
+    {
+      "id": "ad47",
+      "name": "Bobo",
+      "age": "9",
+      "isWellBehaved": true
     }
   ],
   "dogs": [
-    {
-      "id": "1",
-      "name": "Barley",
-      "age": 5,
-      "isWellBehaved": false
-    },
-    {
-      "id": "2",
-      "name": "Ali",
-      "age": "deceased",
-      "isWellBe,haved": true
-    },
-    {
-      "id": "3",
-      "name": "Lily",
-      "age": "deceased",
-      "isWellBehaved": true
-    },
     {
       "id": "8e82",
       "name": "Fido",
@@ -99,6 +87,24 @@
       "id": "2a9f",
       "name": "George",
       "age": "5",
+      "isWellBehaved": true
+    },
+    {
+      "id": "56da",
+      "name": "NomNom",
+      "age": "1",
+      "isWellBehaved": true
+    },
+    {
+      "id": "7db0",
+      "name": "Bibi",
+      "age": "9",
+      "isWellBehaved": true
+    },
+    {
+      "id": "294a",
+      "name": "NomNomNom",
+      "age": "3",
       "isWellBehaved": true
     }
   ]

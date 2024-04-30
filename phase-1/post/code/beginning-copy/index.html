@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>POST Requests</title>
+    <script defer src="./index.js"></script>
+  </head>
+
+  <body>
+    <h1>POST Requests</h1>
+    <h2>Dogs</h2>
+    <ul id="dogs"></ul>
+    <h2>Cats</h2>
+    <ul id="cats"></ul>
+    <h2>Add a Cat or Dog!</h2>
+    <form id="form">
+      <label
+        >Add Pet!
+        <select name="pet">
+          <option value="dogs">Add a Dog</option>
+          <option value="cats">Add a Cat</option>
+        </select>
+      </label>
+      <br />
+      <label
+        >Name
+        <input name="name" />
+      </label>
+      <label
+        >Age
+        <input type="number" name="age" />
+      </label>
+      <input type="submit" value="Add Dog!" />
+    </form>
+    <h2>Remove a Pet!</h2>
+    <form id="remove-form">
+      <label
+        >Remove a Pet!
+        <select name="removePet" id="remove"></select>
+      </label>
+      <input type="submit" value="Remove Pet!" />
+    </form>
+    <h2>Update a Pet Profile!</h2>
+    <form id="update-form">
+      <label
+        >Update a Pet!
+        <select name="updatePet" id="update"></select>
+      </label>
+      <br />
+      <label
+        >Name
+        <input name="name" />
+      </label>
+      <br />
+      <label
+        >Age
+        <input type="number" name="age" />
+      </label>
+      <br />
+      <label
+        >(Apply to Dogs Only) Is it Well Behaved?
+        <select name="isWellBehaved" id="updateBehavior">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </label>
+      <br />
+      <label
+        >(For Cats Only) Favorite Foods
+        <input name="food" />
+      </label>
+      <input type="submit" value="Update Pet!" />
+    </form>
+  </body>
+</html>
