@@ -22,30 +22,55 @@ fetch("http://localhost:3000/dogs")
     });
   });
 
+// UPDATE A PET
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
   const petName = event.target.name.value;
   const petAge = event.target.age.value;
   const petType = event.target.pet.value;
-  console.log("name=" + petName + " age=" + petAge + " type=" + petType);
-  fetch(`http://localhost:3000/${petType}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      name: petName,
-      age: petAge,
-      isWellBehaved: true,
-    }),
-  })
-    .then((response) => response.json())
-    .then((newPet) => {
-      console.log(newPet);
-      addNewAnimal(newPet, petType);
-      updateSelection(newPet, petType);
-    });
+  // console.log("name=" + petName + " age=" + petAge + " type=" + petType);
+  if (petType === "dogs") {
+    fetch(`http://localhost:3000/${petType}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: petName,
+        age: petAge,
+        isWellBehaved: true,
+      }),
+    })
+      .then((response) => response.json())
+      .then((newPet) => {
+        // console.log(newPet);
+        addNewAnimal(newPet, petType);
+        // updateSelection(newPet, petType);
+      });
+  } else if (petType === "cats") {
+    fetch(`http://localhost:3000/${petType}`, {
+      method: "POST",
+      // Content-type asks for the format type the client wants or accepts.
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      // the body and JSON.stringify prepares the newCat and formats into JSON.
+      body: JSON.stringify({
+        name: petName,
+        age: petAge,
+        isACat: true,
+        favoriteFoods: [],
+      }),
+    })
+      // This part of the code is dedicated to appending the newCat to HTML.
+      .then((response) => response.json())
+      .then((cat) => {
+        console.log(cat);
+        addNewAnimal(cat, petType);
+      });
+  }
 });
 
 // Now, let's trigger a POST request when the user submits the form,
@@ -61,7 +86,7 @@ fetch("http://localhost:3000/cats")
   .then((response) => response.json())
   .then((cats) => {
     cats.forEach((cat) => {
-      console.log(cat);
+      // console.log(cat);
       // Calls upon a function outside of this fetch function
       addNewAnimal(cat, "cats");
       updateSelection(cat, "cats");
@@ -77,10 +102,14 @@ function addNewAnimal(randomObj, animalType) {
   const select = document.querySelector("#remove");
   const option = document.createElement("option");
   option.value = `${randomObj.id}`;
-  option.id = `${animalType}`;
+  option.className = `${animalType}`;
   option.textContent = `${randomObj.name} (${randomObj.age})`;
   select.append(option);
 }
+
+// function removeFromList(randomObj, animalType) {
+//   const ul = document.querySelector(`#${animalType}`);
+// }
 
 function updateSelection(randomObj, animalType) {
   const select = document.querySelector("#update");
@@ -89,11 +118,11 @@ function updateSelection(randomObj, animalType) {
   option.id = `${animalType}`;
   option.textContent = `${randomObj.name} (${randomObj.age})`;
   select.append(option);
-  console.log(option);
+  // console.log(option);
   select.append(option);
 }
 
-// Listen to the add cat form.
+// // Listen to the add cat form.
 // document.querySelector("#cat-form").addEventListener("submit", (event) => {
 //   event.preventDefault();
 //   // targets in event the name="name" of the dog-form name and age value.
@@ -134,7 +163,7 @@ function updateSelection(randomObj, animalType) {
 
 // 3. Try writing PATCH and DELETE requests!
 
-/**
+/** REMOVE Requests
  * Method:
  * 1. Make select form
  * 2. Have makeNewAnimal function append new option to current select element.
@@ -147,8 +176,9 @@ function updateSelection(randomObj, animalType) {
  *    using string interpolation.
  */
 document.querySelector("#remove-form").addEventListener("submit", (event) => {
+  event.preventDefault();
   const petId = event.target.removePet.value;
-  const petType = event.target.removePet.querySelector("option").id;
+  const petType = event.target.removePet.querySelector("option").className;
   console.log(petId + " " + petType);
   fetch(`http://localhost:3000/${petType}/${petId}`, {
     method: "DELETE",
@@ -171,77 +201,60 @@ document.querySelector("#remove-form").addEventListener("submit", (event) => {
  *    they want to update. Name, age, isWellBehaved, isACat, favorite foods
  */
 document.querySelector("#update-form").addEventListener("submit", (event) => {
-  const petId = event.target.removePet.value;
-  const petType = event.target.removePet.querySelector("option").id;
+  event.preventDefault();
+  const petId = event.target.updatePet.value;
+  const petType = event.target.updatePet.querySelector("option").id;
   const petName = event.target.name.value;
   const petAge = event.target.age.value;
   const isWellBehaved = event.target.isWellBehaved.value;
   const catFavoriteFoods = event.target.food.value;
-  console.log(
-    petId +
-      " " +
-      petType +
-      " " +
-      petName +
-      " " +
-      petAge +
-      " " +
-      isWellBehaved +
-      " " +
-      catFavoriteFoods
-  );
-  if (petType === "dogs") {
-    fetch(`http://localhost:3000/${petType}/${petId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: petName,
-        age: petAge,
-        isWellBehaved: isWellBehaved,
-      }),
-    })
-      .then((response) => response.json())
-      .then((pet) => {
-        console.log(pet);
-        addNewAnimal(pet, `${petType}`);
-      });
-  } else if (petType === "cats") {
-    fetch(`http://localhost:3000/${petType}/${petId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: petName,
-        age: petAge,
-        isWellBehaved: isWellBehaved,
-        isACat: true,
-        favoriteFoods: catFavoriteFoods,
-      }),
-    })
-      .then((response) => response.json())
-      .then((pet) => {
-        console.log(pet);
-        addNewAnimal(pet, `${petType}`);
-      });
-  }
+  // console.log(
+  //   petId +
+  //     " " +
+  //     petType +
+  //     " " +
+  //     petName +
+  //     " " +
+  //     petAge +
+  //     " " +
+  //     isWellBehaved +
+  //     " " +
+  //     catFavoriteFoods
+  // );
+  // fetch(`http://localhost:3000/${petType}/${petId}`, {
+  //   method: "PATCH",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     name: petName,
+  //     age: petAge,
+  //     isWellBehaved: isWellBehaved,
+  //   }),
+  // })
+  //   .then((response) => response.json())
+  //   .then((pet) => {
+  //     // console.log(pet);
+  //     addNewAnimal(pet, `${petType}`);
+  //   });
+  fetch(`http://localhost:3000/${petType}/${petId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: petName,
+      age: petAge,
+      isWellBehaved: isWellBehaved,
+      isACat: true,
+      favoriteFoods: catFavoriteFoods,
+    }),
+  })
+    .then((response) => response.json())
+    .then((pet) => {
+      // console.log(pet);
+      addNewAnimal(pet, `${petType}`);
+    });
 });
-
-// FOR REFERENCE ONLY!
-//     body: JSON.stringify({
-//       name: catName,
-//       age: catAge,
-//       isACat: true,
-//       favoriteFoods: [],
-//     }),
-//   })
-//     // This part of the code is dedicated to appending the newCat to HTML.
-//     .then((response) => response.json())
-//     .then((newCat) => {
-//       console.log(newCat);
-//       addNewAnimal(newCat, "cats");
-//     });

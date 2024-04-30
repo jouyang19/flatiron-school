@@ -50,44 +50,45 @@
       "name": "Bobo",
       "age": "9",
       "isWellBehaved": true
+    },
+    {
+      "id": "0f79",
+      "name": "NomNom",
+      "age": "12",
+      "isWellBehaved": true
+    },
+    {
+      "id": "2726",
+      "name": "test",
+      "age": "5"
+    },
+    {
+      "id": "7b9b",
+      "name": "testing",
+      "age": "6",
+      "isWellBehaved": true
+    },
+    {
+      "id": "0698",
+      "name": "Tuna",
+      "age": "4",
+      "isACat": true,
+      "favoriteFoods": []
+    },
+    {
+      "id": "9fdf",
+      "name": "Silomino",
+      "age": "3",
+      "isACat": true,
+      "favoriteFoods": []
     }
   ],
   "dogs": [
     {
-      "id": "8e82",
-      "name": "Fido",
-      "age": "7",
-      "isWellBehaved": true
-    },
-    {
-      "id": "9d5b",
-      "name": "Moca",
-      "age": "2",
-      "isWellBehaved": true
-    },
-    {
-      "id": "03b5",
-      "name": "Hadi",
-      "age": "5",
-      "isWellBehaved": true
-    },
-    {
-      "id": "45df",
-      "name": "Zaid",
-      "age": "10",
-      "isWellBehaved": true
-    },
-    {
       "id": "8944",
-      "name": "Bobo",
-      "age": "4",
-      "isWellBehaved": true
-    },
-    {
-      "id": "2a9f",
-      "name": "George",
-      "age": "5",
-      "isWellBehaved": true
+      "name": "BoboUPdated",
+      "age": "",
+      "isWellBehaved": "true"
     },
     {
       "id": "56da",
@@ -104,6 +105,24 @@
     {
       "id": "294a",
       "name": "NomNomNom",
+      "age": "3",
+      "isWellBehaved": true
+    },
+    {
+      "id": "b71e",
+      "name": "test",
+      "age": "5",
+      "isWellBehaved": true
+    },
+    {
+      "id": "9f0d",
+      "name": "Lion",
+      "age": "1",
+      "isWellBehaved": true
+    },
+    {
+      "id": "3cc4",
+      "name": "Silo",
       "age": "3",
       "isWellBehaved": true
     }
