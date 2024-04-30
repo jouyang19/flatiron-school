@@ -45,29 +45,61 @@ Takeaways
 // ~ Immediate Invocation
 console.log("~~IMMEDIATE INVOCATION~~");
 // We can immediately invoke functions upon declaration with (definition)(arguments).
+((a, b) => console.log(a - b))(10, 3);
 
 // ~ Context
 console.log("~~CONTEXT~~");
 // -> A function's **context** is an object it can access with the keyword `this`.
+function greet(end) {
+  console.log("Hello there, " + this.name + end);
+}
 // -> We can use the function methods `apply`, `call`, and `bind` to define a function's context.
 // -> function.apply(this, [arguments]);
+greet.apply(
+  {
+    name: "Sakib",
+    friend: "Vinh",
+  },
+  ["!"]
+);
 //    executes `function` with an object reference and array of arguments.
 // -> function.call(this, ...arguments);
+greet.call({ name: "Alessandro" }, "?");
+greet.call({ name: "Vinny" }, "?");
 //    executes `function` with an object reference and list of arguments.
 // -> function.bind(this, ...arguments);
+const greetJames = greet.bind({ name: "James" }, ".");
+greetJames();
 //    returns a function with an object reference and array of arguments.
-
 
 // ~ Advanced Array Methods
 console.log("~~ADVANCED ARRAY METHODS~~");
 // `forEach` isn't the only array method out there. Let's learn about a few more!
 // Hint: For the purposes of Phase 2, `filter` and `map` are most relevant.
+const prices = [30, 20, 10, 5, 45];
 // -> array.find() returns the first element that satisfies some condition.
+console.log(prices.find((price) => price < 20));
 // -> array.reduce() accumulates a value by applying a function to each element in an array.
+console.log(
+  prices.reduce((sum, price) => sum + price),
+  3
+);
 // -> array.filter() returns an array with only the elements that satisfy some condition.
+console.log(prices.filter((price) => price < 20));
 // -> array.map() returns an array where each element has been transformed in some specified way.
+console.log(prices.map((price) => price * 2));
+console.log(prices);
 
 // ~ Challenges
 // 1. Write a function that takes an array of sentences and returns only those that are questions.
 // 2. Write a function that takes an array of lowercased sentences and returns them capitalized.
+// capitalizeSentences(phrases); // ["Hello, there!", "How are you?", "It's me!"];
+// console.log(phrase); // ["Hello, there!", "How are you?", "It's me!"]
 const phrases = ["hello, there!", "how are you?", "It's me!"]; // example array for #1 and #2
+const questionPhrases = phrases.filter((phrase) => {
+  return phrase.slice(-1) === "?";
+});
+console.log(questionPhrases);
+
+const capPhrases = phrases.map((phrase) => phrase.toUpperCase());
+console.log(capPhrases);
