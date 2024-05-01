@@ -37,6 +37,7 @@ document.querySelector("#form").addEventListener("submit", (event) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
+        // IS THERE A WAY TO MAKE AN IF STATEMENT FOR THE BODY SO TO HAVE SEPARATE CAT AND DOG ATT?
         name: petName,
         age: petAge,
         isWellBehaved: true,

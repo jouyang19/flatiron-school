@@ -5,21 +5,31 @@
       "name": "Mitzi",
       "age": "deceased",
       "isACat": true,
-      "favoriteFoods": ["salmon", "salami", "sushi"]
+      "favoriteFoods": [
+        "salmon",
+        "salami",
+        "sushi"
+      ]
     },
     {
       "id": "2",
       "name": "Momo",
       "age": 5,
       "isACat": true,
-      "favoriteFoods": ["salmon"]
+      "favoriteFoods": [
+        "salmon"
+      ]
     },
     {
       "id": "3",
       "name": "Coco",
       "age": 4,
       "isACat": true,
-      "favoriteFoods": ["salmon", "tuna", "spinach"]
+      "favoriteFoods": [
+        "salmon",
+        "tuna",
+        "spinach"
+      ]
     },
     {
       "id": "1077",
@@ -76,7 +86,7 @@
   "dogs": [
     {
       "id": "56da",
-      "name": "Np",
+      "name": "NomNom",
       "age": "",
       "isWellBehaved": "true",
       "isACat": true,
@@ -86,18 +96,6 @@
       "id": "7db0",
       "name": "Bibi",
       "age": "9",
-      "isWellBehaved": true
-    },
-    {
-      "id": "294a",
-      "name": "NomNomNom",
-      "age": "3",
-      "isWellBehaved": true
-    },
-    {
-      "id": "b71e",
-      "name": "test",
-      "age": "5",
       "isWellBehaved": true
     },
     {
