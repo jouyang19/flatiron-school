@@ -17,7 +17,7 @@ fetch("http://localhost:3000/dogs")
   .then((response) => response.json())
   .then((dogs) => {
     dogs.forEach((dog) => {
-      addNewAnimal(dog, "dogs");
+      addNewAnimal(dog, "dogs", dog.id);
       updateSelection(dog, "dogs");
     });
   });
@@ -46,8 +46,9 @@ document.querySelector("#form").addEventListener("submit", (event) => {
       .then((response) => response.json())
       .then((newPet) => {
         // console.log(newPet);
-        addNewAnimal(newPet, petType);
-        // updateSelection(newPet, petType);
+        addNewAnimal(newPet, petType, newPet.id);
+        event.target["name"].value = "";
+        event.target["age"].value = "";
       });
   } else if (petType === "cats") {
     fetch(`http://localhost:3000/${petType}`, {
@@ -89,15 +90,16 @@ fetch("http://localhost:3000/cats")
     cats.forEach((cat) => {
       // console.log(cat);
       // Calls upon a function outside of this fetch function
-      addNewAnimal(cat, "cats");
+      addNewAnimal(cat, "cats", cat.id);
       updateSelection(cat, "cats");
     });
   });
 
 // function to select ul of cats / dogs and create li to append to ul.
-function addNewAnimal(randomObj, animalType) {
+function addNewAnimal(randomObj, animalType, animalValue) {
   const ul = document.querySelector(`#${animalType}`);
   const li = document.createElement("li");
+  li.value = animalValue;
   li.textContent = `${randomObj.name} (${randomObj.age})`;
   ul.append(li);
   const select = document.querySelector("#remove");
@@ -106,6 +108,15 @@ function addNewAnimal(randomObj, animalType) {
   option.textContent = `${randomObj.name} (${randomObj.age})`;
   select.append(option);
 }
+
+// function removeAnimal(randomObj, animalType, animalId) {
+//   const ul = document.querySelector(`#${animalType}`);
+//   const li = ul.querySelector(`${animalId}`);
+//   ul.remove(li);
+//   const select = document.querySelector("#remove");
+//   const option = document.querySelector(`${animalId}`);
+//   select.remove(option);
+// }
 
 // Function to add all the pets onto the select form of update pet section
 function updateSelection(randomObj, animalType) {
@@ -157,7 +168,8 @@ document.querySelector("#remove-form").addEventListener("submit", (event) => {
   })
     .then((response) => response.json)
     .then((pet) => {
-      addNewAnimal(pet, petType);
+      addNewAnimal(pet, petType, petValue);
+      event.target["removePet"].value = "";
     });
 });
 
@@ -199,8 +211,10 @@ document.querySelector("#update-form").addEventListener("submit", (event) => {
     .then((pet) => {
       // console.log(pet);
       addNewAnimal(pet, `${petType}`);
+      event.target["name"].value = "";
+      event.target["age"].value = "";
+      event.target["food"].value = "";
     });
-    event.target[""]
 });
 
 /**
