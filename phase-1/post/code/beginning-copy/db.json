@@ -53,45 +53,20 @@
     },
     {
       "id": "0f79",
-      "name": "NomNom",
-      "age": "12",
-      "isWellBehaved": true
-    },
-    {
-      "id": "2726",
-      "name": "test",
-      "age": "5"
-    },
-    {
-      "id": "7b9b",
-      "name": "testing",
-      "age": "6",
-      "isWellBehaved": true
-    },
-    {
-      "id": "0698",
-      "name": "Tuna",
-      "age": "4",
-      "isACat": true,
-      "favoriteFoods": []
-    },
-    {
-      "id": "9fdf",
-      "name": "Silomino",
+      "name": "Nancy",
       "age": "3",
+      "isWellBehaved": "true",
+      "favoriteFoods": "tuna"
+    },
+    {
+      "id": "1830",
+      "name": "Silo",
+      "age": "2",
       "isACat": true,
       "favoriteFoods": []
     }
   ],
   "dogs": [
-    {
-      "id": "56da",
-      "name": "NomNom",
-      "age": "",
-      "isWellBehaved": "true",
-      "isACat": true,
-      "favoriteFoods": ""
-    },
     {
       "id": "7db0",
       "name": "Bibi",
@@ -108,6 +83,12 @@
       "id": "3cc4",
       "name": "Silo",
       "age": "3",
+      "isWellBehaved": true
+    },
+    {
+      "id": "ffa4",
+      "name": "Iron",
+      "age": "5",
       "isWellBehaved": true
     }
   ]

@@ -22,7 +22,7 @@ fetch("http://localhost:3000/dogs")
     });
   });
 
-// UPDATE A PET
+// ADD A CAT OR DOG FORM LISTENER
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
   const petName = event.target.name.value;
@@ -102,8 +102,7 @@ function addNewAnimal(randomObj, animalType) {
   ul.append(li);
   const select = document.querySelector("#remove");
   const option = document.createElement("option");
-  option.value = `${randomObj.id}`;
-  option.className = `${animalType}`;
+  option.value = `${randomObj.id} ${animalType}`;
   option.textContent = `${randomObj.name} (${randomObj.age})`;
   select.append(option);
 }
@@ -112,11 +111,9 @@ function addNewAnimal(randomObj, animalType) {
 function updateSelection(randomObj, animalType) {
   const select = document.querySelector("#update");
   const option = document.createElement("option");
-  option.value = `${randomObj.id}`;
-  option.id = `${animalType}`;
+  option.value = `${randomObj.id} ${animalType}`;
   option.textContent = `${randomObj.name} (${randomObj.age})`;
   select.append(option);
-  // console.log(option);
   select.append(option);
 }
 
@@ -144,8 +141,12 @@ function updateSelection(randomObj, animalType) {
  */
 document.querySelector("#remove-form").addEventListener("submit", (event) => {
   event.preventDefault();
-  const petId = event.target.removePet.value;
-  const petType = event.target.removePet.querySelector("option").className;
+  const petValue = event.target.removePet.value.split(' ');
+  const petId = petValue[0];
+  const petType = petValue[1];
+  // console.log("petValue for remove form", petValue);
+  // console.log("petId for remove form", petId);
+  // console.log("petType for Remove", petType);
   console.log(petId + " " + petType);
   fetch(`http://localhost:3000/${petType}/${petId}`, {
     method: "DELETE",
@@ -173,45 +174,14 @@ document.querySelector("#remove-form").addEventListener("submit", (event) => {
  */
 document.querySelector("#update-form").addEventListener("submit", (event) => {
   event.preventDefault();
-  const petId = event.target.updatePet.value;
-  const petType = event.target.updatePet.querySelector("option").id;
-  const petName = event.target.name.value;
+  const petValue = event.target.updatePet.value.split(' ');
+  const petId = petValue[0];
+  const petType = petValue[1];
+  const petName = event.target.name.value.split(' ');
+  console.log(petName);
   const petAge = event.target.age.value;
   const isWellBehaved = event.target.isWellBehaved.value;
   const catFavoriteFoods = event.target.food.value;
-  // console.log(
-  //   petId +
-  //     " " +
-  //     petType +
-  //     " " +
-  //     petName +
-  //     " " +
-  //     petAge +
-  //     " " +
-  //     isWellBehaved +
-  //     " " +
-  //     catFavoriteFoods
-  // );
-  if (petType === "dogs") {
-  } else if (petType === "cats") {
-  }
-  // fetch(`http://localhost:3000/${petType}/${petId}`, {
-  //   method: "PATCH",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     name: petName,
-  //     age: petAge,
-  //     isWellBehaved: isWellBehaved,
-  //   }),
-  // })
-  //   .then((response) => response.json())
-  //   .then((pet) => {
-  //     // console.log(pet);
-  //     addNewAnimal(pet, `${petType}`);
-  //   });
   fetch(`http://localhost:3000/${petType}/${petId}`, {
     method: "PATCH",
     headers: {
@@ -230,4 +200,13 @@ document.querySelector("#update-form").addEventListener("submit", (event) => {
       // console.log(pet);
       addNewAnimal(pet, `${petType}`);
     });
+    event.target[""]
 });
+
+/**
+ *  EXTRAS:
+ *  1. Make it so that the fetch and patch forms do not accept empty fields.
+ *  2. Make it so that the update form does not show the cat fields for a dog profile and vice versa.
+ *  3. Make an identical function of addNewAnimal, but for removeAnimal, so that the respective li fields of the respective animal is deleted from the DOM. 
+ */
+
