@@ -13,17 +13,56 @@ Core Deliverables
 
 */
 
-import Form from './Form';
+import Form from "./Form";
+import { useState, useEffect } from "react";
 
 export default function App() {
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    console.log("fetching dishes...");
+    fetch("http://localhost:3000/menu")
+      .then((response) => response.json())
+      .then((menuInDb) => {
+        console.log(menuInDb);
+        return setMenu(menuInDb);
+      });
+  }, []);
+
+  const post = (event, name, price) => {
+    event.preventDefault();
+    console.log(name);
+    console.log(price);
+  };
+
   return (
-    <main>
-      <h1>Chez Flatiron</h1>
-      <section>
-        <h2>Featured Dish: NAME!</h2>
-        <div>NAME | $PRICE<br/></div>
-        <h3>Submit a New Dish! <Form /></h3>
+    <div className="card bg-base-100 flex w-full border-opacity-50 flex-col place-center items-center justify-center text-center py-20">
+      <h1 className="card-title">Chez Flatiron</h1>
+      <section className="card-body">
+        <h2 className="grid h-20 card bg-base-300 rounded-box place-items-center">
+          Featured Dish: NAME!
+        </h2>
+        {/* <div>
+          {menu.map((dish) => {
+            <div key={dish.id}>
+              {dish.name} | ${dish.price}{" "}
+            </div>;
+          })}
+        </div> */}
+        <div className="grid h-80 bg-base-300 rounded-box place-items-center">
+          {menu.map((dish) => {
+            return (
+              <div key={dish.id}>
+                {dish.name} | ${dish.price}{" "}
+              </div>
+            );
+          })}
+        </div>
+
+        <h3 className="card-actions justify-center">
+          Submit a New Dish! <Form postRequest={post} />
+        </h3>
       </section>
-    </main>
+    </div>
   );
 }
