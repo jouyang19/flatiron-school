@@ -12,13 +12,15 @@ Core Deliverables
 
 */
 
-import Form from './Form';
+import Form from "./Form";
 
 function App() {
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div className="card-body text-center items-center">
       <header>
-        <h1>Luck of the Screen</h1>
+        <h1 className="card-title items-center text-center">
+          Luck of the Screen
+        </h1>
       </header>
       <Form />
     </div>
