@@ -16,7 +16,6 @@ export default function Form() {
 
   // Use spread operator to include the rest of the object
   // while updating the specific key. Set that to setMemberData for the state.
-  let errorMessages = [];
 
   function handleChange(event) {
     const updatedMemberData = {
@@ -34,13 +33,9 @@ export default function Form() {
     if (!/^[a-zA-Z\s'-]+$/.test(data.name.trim()) && data.name !== "") {
       errors.name =
         "Name can only contain letters, spaces, hyphens, and apostrophes.";
-    }
-
-    if (
-      !/^[a-zA-Z0-9\s.,!?'"-:()]+$/.test(
-        data.movie.trim() && data.movie !== ""
-      ) &&
-      data.name.trim()
+    } else if (
+      !/^[a-zA-Z0-9\s.,!?'"-:()]+$/.test(data.movie.trim()) &&
+      data.movie !== ""
     ) {
       errors.movie =
         "Movie title can only contain letters, numbers, spaces, and common punctuation.";
@@ -80,7 +75,7 @@ export default function Form() {
           className="input input-bordered w-full max-w-xs"
         />
       </label>
-      {errors.movie && <p className="alert">{errors.movie}</p>}
+      {errors.movie && <p className="alert alert-error">{errors.movie}</p>}
       <br></br>
       <p>
         <em>Your lucky number is</em>

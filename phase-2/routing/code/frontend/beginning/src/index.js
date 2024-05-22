@@ -13,18 +13,49 @@ Core Deliverables
 */
 
 // Create React App
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 // Tailwind CSS (along with ../tailwind.config.js)
 import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Welcome from "./welcome";
+import Teas from "./routes/teas";
+import About from "./routes/about";
+import Root from "./routes/root";
+import Error from "./error";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "teas",
+        element: <Teas />,
+        loader: async () => {
+          return fetch("http://localhost:3000/teas").then((response) =>
+            response.json()
+          );
+        },
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "/",
+        element: <Welcome />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <h1 className='text-2xl hover:italic font-semibold'>
-      Sakib's Tea House
-    </h1>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
